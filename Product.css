@@ -1,0 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+.hero{
+    height:45vh;
+    background:linear-gradient(to right,pink,gold);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+body{
+    background:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 5%;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo a{
+    text-decoration:none;
+    color:goldenrod;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+}
+
+.nav-links li a{
+    margin:0 15px;
+    text-decoration:none;
+    color:black;
+}
+
+/* HERO */
+
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr); /* 👈 FIXED 3 PER ROW */
+    gap:30px;
+    padding:50px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* KIT ITEMS */
+.kit-items{
+    text-align:left;
+    margin-top:10px;
+    font-size:13px;
+}
+
+.kit-items label{
+    display:block;
+    margin:5px 0;
+    cursor:pointer;
+}
+
+/* BUTTON */
+button{
+    margin-top:10px;
+    padding:10px 20px;
+    background:goldenrod;
+    border:none;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+/* REVIEW */
+.review-section{
+    background:#fdf2f2;
+    padding:40px;
+    text-align:center;
+}
+
+.stars span{
+    font-size:25px;
+    cursor:pointer;
+    color:#ccc;
+}
+
+.stars span.active{
+    color:orange;
+}
+.cta{
+    text-align: center;        /* center text */
+    padding: 50px 20px;
+    background: #fdf2f2;
+    display: flex;             /* 👈 important */
+    flex-direction: column;
+    align-items: center;       /* 👈 horizontal center */
+    justify-content: center;   /* 👈 vertical center */
+}
+.cta h2{
+    margin-bottom: 15px;
+    
+}
+
+.cta button{
+    background: hotpink;
+    padding: 12px 25px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+#reviewText{
+    width:60%;
+    height:80px;
+    margin-top:15px;
+}
+
+/* FOOTER */
+.footer{
+    background:#111;
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+.search-box input{
+    padding:8px 12px;
+    border:1px solid #ccc;
+    border-radius:20px;
+    outline:none;
+    width:200px;
+    transition:0.3s;
+}
+
+.search-box input:focus{
+    border-color:goldenrod;
+    box-shadow:0 0 5px rgba(197,160,89,0.5);
+}

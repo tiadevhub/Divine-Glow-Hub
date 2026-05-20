@@ -1,0 +1,285 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login | Divine Glow Hub</title>
+
+<style>
+
+body{
+    font-family:Poppins, sans-serif;
+    background:linear-gradient(to right,#fff0f5,#fff8dc);
+    text-align:center;
+}
+
+.box{
+    background:white;
+    width:320px;
+    margin:100px auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:40px;
+}
+
+.eye{
+    position:absolute;
+    right:20px;
+    top:20px;
+    cursor:pointer;
+}
+
+button{
+    padding:10px 20px;
+    background:hotpink;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.note{
+    font-size:12px;
+    color:gray;
+}
+
+.back{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    color:#555;
+}
+
+a{
+    color:hotpink;
+    text-decoration:none;
+}
+
+#status{
+    color:green;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+#logoutBtn{
+    background:#333;
+    margin-top:10px;
+    display:none;
+}
+
+#deleteBtn{
+    background:red;
+    margin-top:10px;
+    display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Login 💖</h2>
+
+<p class="note">
+Login to access cart, orders & reviews
+</p>
+
+<p id="status"></p>
+
+<div id="loginForm">
+
+<input type="email" id="email" placeholder="Email">
+
+<div class="password-box">
+
+<input type="password" id="pass" placeholder="Password">
+
+<span class="eye" onclick="togglePass('pass')">👁</span>
+
+</div>
+
+<button onclick="login()">Login</button>
+
+<p class="note">
+Don't have an account?
+<a href="signup.html">Sign Up</a>
+</p>
+
+</div>
+
+<button id="logoutBtn" onclick="logout()">
+Logout 🚪
+</button>
+
+<br>
+
+<button id="deleteBtn" onclick="deleteAccount()">
+Delete Account ❌
+</button>
+
+<br>
+
+<a href="index.html" class="back">
+← Back to Website
+</a>
+
+</div>
+
+<script>
+
+// PAGE LOAD
+window.onload = function(){
+
+    let loggedIn = localStorage.getItem("loggedIn");
+
+    let user = localStorage.getItem("user");
+
+    if(loggedIn === "true"){
+
+        document.getElementById("status").innerText =
+        "Already logged in as: " + user + " ✅";
+
+        document.getElementById("loginForm").style.display =
+        "none";
+
+        document.getElementById("logoutBtn").style.display =
+        "inline-block";
+
+        document.getElementById("deleteBtn").style.display =
+        "inline-block";
+    }
+}
+
+// SHOW/HIDE PASSWORD
+function togglePass(id){
+
+    let field = document.getElementById(id);
+
+    if(field.type === "password"){
+        field.type = "text";
+    }
+    else{
+        field.type = "password";
+    }
+}
+
+// LOGIN FUNCTION
+function login(){
+
+    let email = document.getElementById("email").value.trim();
+
+    let pass = document.getElementById("pass").value.trim();
+
+    // EMAIL CHECK
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if(email === ""){
+        alert("Enter email ❌");
+        return;
+    }
+
+    if(!emailPattern.test(email)){
+        alert("Enter valid email ❌");
+        return;
+    }
+
+    // PASSWORD CHECK
+    if(pass === ""){
+        alert("Enter password ❌");
+        return;
+    }
+
+    // GET SAVED USER
+    let savedUser =
+    JSON.parse(localStorage.getItem("userData"));
+
+    // ACCOUNT CHECK
+    if(!savedUser){
+
+        alert("No account found. Please create account ❌");
+
+        window.location.href = "signup.html";
+
+        return;
+    }
+
+    // LOGIN CHECK
+    if(email !== savedUser.email ||
+       pass !== savedUser.pass){
+
+        alert("Invalid email or password ❌");
+
+        return;
+    }
+
+    // SUCCESS LOGIN
+    localStorage.setItem("loggedIn", "true");
+
+    localStorage.setItem("user", savedUser.name);
+
+    alert("Login Successful ✅");
+
+    window.location.href = "index.html";
+}
+
+// LOGOUT
+function logout(){
+
+    localStorage.removeItem("loggedIn");
+
+    localStorage.removeItem("user");
+
+    alert("Logged out successfully 🚪");
+
+    window.location.reload();
+}
+
+// DELETE ACCOUNT
+function deleteAccount(){
+
+    let confirmDelete =
+    confirm("Are you sure you want to permanently delete your account?");
+
+    if(confirmDelete){
+
+        // REMOVE COMPLETE ACCOUNT
+        localStorage.removeItem("userData");
+
+        localStorage.removeItem("loggedIn");
+
+        localStorage.removeItem("user");
+
+        alert("Account deleted permanently ❌");
+
+        window.location.href = "signup.html";
+    }
+}
+
+</script>
+
+</body>
+</html>

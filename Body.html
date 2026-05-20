@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Care | Divine Glow Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="Body.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+        <a href="index.html">DIVINE GLOW HUB</a>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Face.html">Face</a></li>
+        <li><a href="Body.html">Body</a></li>
+        <li><a href="Product.html">Products</a></li>
+    </ul>
+   <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProduct()">
+</div>
+
+    <div class="nav-icons">
+        <span onclick="goCart()">🛒</span>
+        <span onclick="goLogin()">👤</span>
+        <span onclick="goOrders()">📦</span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    
+</section>
+
+<!-- BODY WASH -->
+<section class="category">
+<h2>Body Wash</h2>
+<div class="grid">
+
+<div class="card" onclick='viewProduct({
+name:"Nourishing Body Wash",
+price:299,
+image:"images/NourishingBodyWash.jpeg",
+desc:"A gentle, soap-free body wash that cleanses skin while maintaining its natural moisture barrier.",
+ingredients:"Aloe Vera, Glycerin, Vitamin E, Mild Surfactants",
+usage:"Apply on wet skin, lather gently and rinse thoroughly. Use daily.",
+benefits:"Cleanses without drying, hydrates skin, keeps skin soft",
+skinType:"All skin types, especially dry skin"
+})'>
+<img src="images/NourishingBodyWash.jpeg">
+<h3>Nourishing Body Wash</h3>
+<p>₹299</p>
+<button onclick="event.stopPropagation();addToCart('Nourishing Body Wash',299)">Add to Cart</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+name:"Acne Control Body Wash",
+price:349,
+image:"images/AcneBodyWash.jpeg",
+desc:"A clarifying body wash designed to target body acne, remove excess oil and unclog pores.",
+ingredients:"Salicylic Acid, Tea Tree Oil, Neem Extract, Zinc",
+usage:"Apply on affected areas, leave for 30 seconds, then rinse. Use daily.",
+benefits:"Reduces acne, unclogs pores, controls oil production",
+skinType:"Oily and acne-prone skin"
+})'>
+<img src="images/AcneBodyWash.jpeg">
+<h3>Acne Control Wash</h3>
+<p>₹349</p>
+<button onclick="event.stopPropagation();addToCart('Acne Control Wash',349)">Add to Cart</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+name:"Vitamin C Body Wash",
+price:399,
+image:"images/vitamincBodywash.jpeg",
+desc:"A brightening body wash enriched with Vitamin C to improve skin radiance and reduce dullness.",
+ingredients:"Vitamin C, Orange Extract, Niacinamide, Glycerin",
+usage:"Use daily on wet skin, massage gently and rinse off.",
+benefits:"Brightens skin tone, reduces dullness, adds glow",
+skinType:"All skin types"
+})'>
+<img src="images/vitamincBodywash.jpeg">
+<h3>Vitamin C Body Wash</h3>
+<p>₹399</p>
+<button onclick="event.stopPropagation();addToCart('Vitamin C Body Wash',399)">Add to Cart</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+name:"Aloe Fresh Body Wash",
+price:379,
+image:"images/aloeBodywash.jpeg",
+desc:"A soothing body wash infused with aloe vera that calms skin and provides a refreshing cleanse.",
+ingredients:"Aloe Vera, Cucumber Extract, Glycerin, Vitamin B5",
+usage:"Apply on wet skin, lather and rinse thoroughly. Suitable for daily use.",
+benefits:"Soothes irritation, refreshes skin, provides light hydration",
+skinType:"Sensitive and normal skin"
+})'>
+<img src="images/aloeBodywash.jpeg">
+<h3>Aloe Fresh Wash</h3>
+<p>₹379</p>
+<button onclick="event.stopPropagation();addToCart('Aloe Fresh Wash',379)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- MOISTURIZER -->
+<section class="category">
+<h2>Body Moisturizers</h2>
+<div class="grid">
+
+<div class="card"onclick='viewProduct({
+    name:"Hydra Body Lotion",
+price:499,
+image:"images/HydrationBodyLotion.jpeg",
+desc:"A deeply hydrating lotion that keeps skin soft and moisturized all day.",
+ingredients:"Hyaluronic Acid, Shea Butter, Glycerin",
+usage:"Apply daily after shower on damp skin.",
+benefits:"Long-lasting hydration, smooth skin",
+skinType:"Dry skin"
+})'>
+<img src="images/HydrationBodyLotion.jpeg">
+<h3>Hydra Body Lotion</h3>
+<p>₹499</p>
+<button onclick="event.stopPropagation();addToCart('Hydra Body Lotion',499)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Magnesium Body Lotion",
+price:699,
+image:"images/MagnesiumBodyLotion.jpeg",
+desc:"A relaxing body lotion infused with magnesium to soothe tired muscles and skin.",
+ingredients:"Magnesium, Aloe Vera, Vitamin E",
+usage:"Massage gently on body, especially at night.",
+benefits:"Relaxes muscles, nourishes skin",
+skinType:"All skin types"
+})'>
+<img src="images/MagnesiumBodyLotion.jpeg">
+<h3>Magnesium Lotion</h3>
+<p>₹699</p>
+<button onclick="event.stopPropagation();addToCart('Magnesium Lotion',699)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Summer Glow Lotion",
+price:599,
+image:"images/summerBodyLotion.jpeg",
+desc:"A lightweight lotion perfect for summers that hydrates and adds natural glow.",
+ingredients:"Vitamin C, Aloe Vera, Niacinamide",
+usage:"Apply daily for fresh hydrated skin.",
+benefits:"Brightens skin, non-greasy hydration",
+skinType:"Normal to oily skin"
+})'>
+<img src="images/summerBodyLotion.jpeg">
+<h3>Summer Glow Lotion</h3>
+<p>₹599</p>
+<button onclick="event.stopPropagation();addToCart('Summer Glow Lotion',599)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Strawberry Body Lotion",
+price:649,
+image:"images/strawberryBodyLotion.jpeg",
+desc:"A fruity moisturizing lotion that softens skin and leaves a refreshing fragrance.",
+ingredients:"Strawberry Extract, Shea Butter",
+usage:"Apply after shower daily.",
+benefits:"Softens skin, adds glow",
+skinType:"All skin types"
+})'>
+<img src="images/strawberryBodyLotion.jpeg">
+<h3>Strawberry Lotion</h3>
+<p>₹649</p>
+<button onclick="event.stopPropagation();addToCart('Strawberry Lotion',649)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- SCRUB -->
+<section class="category">
+<h2>Body Scrubs</h2>
+<div class="grid">
+
+<div class="card"onclick='viewProduct({
+    name:"Coffee Body Scrub",
+price:599,
+image:"images/CoffeeScrub.jpeg",
+desc:"An exfoliating scrub that removes dead skin and improves circulation.",
+ingredients:"Coffee, Coconut Oil, Sugar",
+usage:"Use 2-3 times a week on damp skin.",
+benefits:"Removes dead skin, smoothens texture",
+skinType:"All skin types"
+})'>
+<img src="images/CoffeeScrub.jpeg">
+<h3>Coffee Scrub</h3>
+<p>₹599</p>
+<button onclick="event.stopPropagation();addToCart('Coffee Scrub',599)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Sugar Glow Scrub",
+price:549,
+image:"images/SugarScrub.jpeg",
+desc:"A gentle exfoliating scrub for glowing and soft skin.",
+ingredients:"Sugar, Honey, Almond Oil",
+usage:"Massage gently and rinse.",
+benefits:"Brightens skin, smoothens texture",
+skinType:"Sensitive skin"
+})'>
+<img src="images/SugarScrub.jpeg">
+<h3>Sugar Glow Scrub</h3>
+<p>₹549</p>
+<button onclick="event.stopPropagation();addToCart('Sugar Glow Scrub',549)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Rose Shea Scrub",
+price:649,
+image:"images/RoseSheaBodyScrub.jpeg",
+desc:"A luxurious scrub that exfoliates while deeply nourishing skin.",
+ingredients:"Rose Extract, Shea Butter",
+usage:"Use twice weekly.",
+benefits:"Softens skin, improves glow",
+skinType:"Dry skin"
+})'>
+<img src="images/RoseSheaBodyScrub.jpeg">
+<h3>Rose Shea Scrub</h3>
+<p>₹649</p>
+<button onclick="event.stopPropagation();addToCart('Rose Shea Scrub',649)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Turmeric Bright Scrub",
+price:579,
+image:"images/TurmericclayBodyScrub.jpeg",
+desc:"A brightening scrub that evens skin tone and removes tan.",
+ingredients:"Turmeric, Clay, Honey",
+usage:"Use 2 times a week.",
+benefits:"Brightens skin, reduces tan",
+skinType:"All skin types"
+})'>
+<img src="images/TurmericclayBodyScrub.jpeg">
+<h3>Turmeric Bright Scrub</h3>
+
+<p>₹579</p>
+<button onclick="event.stopPropagation();('Turmeric Bright Scrub',579)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- SUNSCREEN -->
+<section class="category">
+<h2>Body Sunscreen</h2>
+<div class="grid">
+
+
+    <div class="card" onclick='viewProduct({
+name:"Strawberry Sunscreen",
+price:399,
+image:"images/StrawberrySunscreen.jpeg",
+desc:"A lightweight sunscreen with fruity extract for daily protection.",
+ingredients:"Strawberry Extract, SPF Filters",
+usage:"Apply before sun exposure.",
+benefits:"Protects from UV, adds glow",
+skinType:"All skin types"
+
+})'>
+<img src="images/StrawberrySunscreen.jpeg">
+<h3>Strawberry Sunscreen</h3>
+<p>₹399</p>
+<button onclick="event.stopPropagation();addToCart('Strawberry Sunscreen',399)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"SPF 50 Sunscreen",
+price:499,
+image:"images/sunscreen.jpeg",
+desc:"Broad-spectrum sunscreen for strong sun protection.",
+ingredients:"Zinc Oxide, Vitamin E",
+usage:"Apply every 2-3 hours outdoors.",
+benefits:"Prevents sun damage",
+skinType:"All skin types"
+})'>
+<img src="images/sunscreen.jpeg">
+<h3>SPF 50 Sunscreen</h3>
+<p>₹499</p>
+<button onclick="event.stopPropagation();addToCart('SPF 50 Sunscreen',499)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Mango Glow Sunscreen",
+price:459,
+image:"images/MangoSunscreen.jpeg",
+desc:"A brightening sunscreen enriched with mango extract.",
+ingredients:"Mango Extract, Vitamin C",
+usage:"Apply before sun exposure.",
+benefits:"Brightens + protects",
+skinType:"Normal skin"
+})'>
+<img src="images/MangoSunscreen.jpeg">
+<h3>Mango Glow Sunscreen</h3>
+<p>₹459</p>
+<button onclick="event.stopPropagation();addToCart('Mango Glow Sunscreen',459)">Add to Cart</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Matte Finish SPF",
+price:529,
+image:"images/MatteSunscreen.jpeg",
+desc:"Oil-free sunscreen for a matte, non-greasy finish.",
+ingredients:"Niacinamide, Silica",
+usage:"Apply evenly before stepping out.",
+benefits:"Controls oil, protects skin",
+skinType:"Oily skin"
+})'>
+<img src="images/MatteSunscreen.jpeg">
+<h3>Matte Finish SPF</h3>
+<p>₹529</p>
+<button onclick="event.stopPropagation();addToCart('Matte Finish SPF',529)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+
+<h2 style="text-align:center;">Frequently Asked Questions ❓</h2>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Are these products suitable for all skin types? 
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, we have products for oily, dry and combination skin.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Are your products safe to use daily? 
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, all products are designed for safe daily use.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        How long does it take to see results? 
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        You may start noticing results within 2–4 weeks of regular use.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Are your products cruelty-free and chemical-free?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, all our products are cruelty-free and made with safe, skin-friendly ingredients without harmful chemicals.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Which product should I choose for my skin type?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        You can use our Skin Analysis feature to get personalized product recommendations based on your skin type.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Do your products have any side effects?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Our products are made with safe ingredients, but we recommend doing a patch test before use.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Can men use these products?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, all our skincare products are suitable for both men and women.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Are your products suitable for sensitive skin?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, we offer products specially designed for sensitive skin. Always check product details before use.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        How should I store the products?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Store in a cool, dry place away from direct sunlight for best results.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        Do you offer cash on delivery?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        Yes, cash on delivery is available on selected locations.
+    </div>
+</div>
+
+<div class="faq-item">
+    <div class="question" onclick="toggleFAQ(this)">
+        How can I contact customer support?
+        <span class="icon">+</span>
+    </div>
+    <div class="answer">
+        You can contact us via email or phone mentioned in the contact section of our website.
+    </div>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+    <div class="footer-box">
+        <h3>Divine Glow Hub ✨</h3>
+        <p>Glow naturally with premium skincare rituals.</p>
+    </div>
+
+    <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="Index.html">Home</a>
+        <a href="Face.html">Face</a>
+        <a href="Body.html">Body</a>
+        <a href="Product.html">Products</a>
+    </div>
+
+    <div class="footer-box">
+        <h3>Contact</h3>
+        <p>Email: support@divineglow.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+    <p>© 2026 Divine Glow Hub</p>
+</div>
+<a href="about.html" style="color:#fff;margin:0 10px;text-decoration:none;">About Us</a>
+
+</footer>
+
+
+<script >
+
+function addToCart(name, price){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({name:name, price:price});
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart 🛒");
+}
+
+function goCart(){
+    window.location.href = "cart.html";
+}
+
+function goLogin(){
+    window.location.href = "login.html";
+}
+
+function goOrders(){
+    window.location.href = "orders.html";
+}
+
+function toggleFAQ(el){
+    let answer = el.nextElementSibling;
+    let icon = el.querySelector(".icon");
+
+    if(answer.style.display === "block"){
+        answer.style.display = "none";
+        icon.innerHTML = "+";
+    } else {
+        answer.style.display = "block";
+        icon.innerHTML = "−";
+    }
+}
+function searchProduct(){
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+function viewProduct(product){
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+    window.location.href = "productDetail.html";
+}
+
+
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

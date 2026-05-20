@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Hampers | Divine Glow Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel ="stylesheet" href="style.css">
+<link rel="stylesheet" href="Product.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="logo"><a href="index.html">DIVINE GLOW HUB</a></div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="Face.html">Face</a></li>
+<li><a href="Body.html">Body</a></li>
+<li><a href="Product.html">Products</a></li>
+</ul>
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProduct()">
+</div>
+<div>
+<span onclick="goCart()" style="cursor:pointer;">🛒</span>
+<span onclick="goLogin()" style="cursor:pointer;">👤</span>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero"> 
+    <h1>Luxury Skincare Hampers ✨</h1> 
+    <p>Create your perfect skincare combo</p>
+ </div>
+
+<!-- PRODUCTS -->
+<section class="grid">
+
+<!-- 1. GLOW BOOSTER KIT -->
+<div class="card">
+<img src="images/GlowBoosterKit.jpeg">
+<h2>Glow Booster Kit</h2>
+<p class="price">₹1796</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Vitamin C Cleanser</label>
+<label><input type="checkbox" value="599" checked onchange="updateKitPrice(this.closest('.card'))"> Glow Booster Serum</label>
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Radiance Cream</label>
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> SPF 50 Sunscreen</label>
+</div>
+
+<button onclick="addKitToCart('Glow Booster Kit', this)">Add Kit</button>
+</div>
+
+<!-- 2. HYDRATION KIT -->
+<div class="card">
+<img src="images/HydrationKit.jpeg">
+<h2>Hydration Kit</h2>
+<p class="price">₹1696</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="399" checked onchange="updateKitPrice(this.closest('.card'))"> Hydrating Cleanser</label>
+<label><input type="checkbox" value="599" checked onchange="updateKitPrice(this.closest('.card'))"> Hyaluronic Acid Serum</label>
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Deep Moisturizer</label>
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> SPF 50 Sunscreen</label>
+</div>
+
+<button onclick="addKitToCart('Hydration Kit', this)">Add Kit</button>
+</div>
+
+<!-- 3. ACNE CONTROL KIT -->
+<div class="card">
+<img src="images/AcneControlKit.jpeg">
+<h2>Acne Control Kit</h2>
+<p class="price">₹1596</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="399" checked onchange="updateKitPrice(this.closest('.card'))"> Charcoal Face Wash</label>
+<label><input type="checkbox" value="399" checked onchange="updateKitPrice(this.closest('.card'))"> Balancing Toner</label>
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Acne Control Serum</label>
+<label><input type="checkbox" value="299" checked onchange="updateKitPrice(this.closest('.card'))"> Oil-Free Gel Moisturizer</label>
+</div>
+
+<button onclick="addKitToCart('Acne Control Kit', this)">Add Kit</button>
+</div>
+
+<!-- 4. BRIDAL GLOW KIT -->
+<div class="card">
+<img src="images/BridalGlowKit.jpeg">
+<h2>Bridal Glow Kit</h2>
+<p class="price">₹1796</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Vitamin C Radiance Cleanser</label>
+<label><input type="checkbox" value="599" checked onchange="updateKitPrice(this.closest('.card'))"> Hyaluronic Glow Serum</label>
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Brightening Cream</label>
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> SPF 50 Sunscreen</label>
+</div>
+
+<button onclick="addKitToCart('Bridal Glow Kit', this)">Add Kit</button>
+</div>
+
+<!-- 5. TRAVEL MINI KIT -->
+<div class="card">
+<img src="images/TravelMiniKit.jpeg">
+<h2>Travel Mini Kit</h2>
+<p class="price">₹896</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> Mini Cleanser</label>
+<label><input type="checkbox" value="249" checked onchange="updateKitPrice(this.closest('.card'))"> Mini Serum</label>
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> Mini Sunscreen</label>
+<label><input type="checkbox" value="249" checked onchange="updateKitPrice(this.closest('.card'))"> Mini Moisturizer</label>
+</div>
+
+<button onclick="addKitToCart('Travel Mini Kit', this)">Add Kit</button>
+</div>
+
+<!-- 6. SENSITIVE SKIN KIT -->
+<div class="card">
+<img src="images/SensitiveSkinKit.jpeg">
+<h2>Sensitive Skin Kit</h2>
+<p class="price">₹1496</p>
+
+<div class="kit-items">
+<label><input type="checkbox" value="399" checked onchange="updateKitPrice(this.closest('.card'))"> Aloe Gentle Cleanser</label>
+<label><input type="checkbox" value="399" checked onchange="updateKitPrice(this.closest('.card'))"> Soothing Toner</label>
+<label><input type="checkbox" value="499" checked onchange="updateKitPrice(this.closest('.card'))"> Barrier Repair Cream</label>
+<label><input type="checkbox" value="199" checked onchange="updateKitPrice(this.closest('.card'))"> SPF 50 Sunscreen</label>
+</div>
+
+<button onclick="addKitToCart('Sensitive Skin Kit', this)">Add Kit</button>
+</div>
+
+</section>
+<!-- REVIEW -->
+<section class="review-section">
+
+<h2>Customer Reviews ⭐</h2>
+
+<div class="stars" id="starContainer">
+<span onclick="setRating(1)">☆</span>
+<span onclick="setRating(2)">☆</span>
+<span onclick="setRating(3)">☆</span>
+<span onclick="setRating(4)">☆</span>
+<span onclick="setRating(5)">☆</span>
+</div>
+
+<textarea id="reviewText" placeholder="Write your review..."></textarea>
+
+<br>
+<button onclick="submitReview()">Submit Review</button>
+
+<div id="reviewList"></div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2026 Divine Glow Hub</p>
+<a href="about.html" style="color:#fff;margin:0 10px;text-decoration:none;">About Us</a>
+</footer>
+
+<script>
+
+/* NAV */
+function goCart(){
+window.location.href="cart.html";
+}
+
+function goLogin(){
+window.location.href="login.html";
+}
+
+function goOrders(){
+window.location.href="orders.html";
+}
+
+
+/* CART */
+function addToCart(name,price){
+
+let cart=
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({name,price});
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert(name+" added to cart 🛒");
+
+}
+
+
+/* REVIEW */
+let selectedRating=0;
+
+
+function setRating(rating){
+
+selectedRating=rating;
+
+let stars=
+document.querySelectorAll("#starContainer span");
+
+stars.forEach((star,index)=>{
+
+if(index<rating){
+
+star.classList.add("active");
+
+star.innerHTML="⭐";
+
+}
+
+else{
+
+star.classList.remove("active");
+
+star.innerHTML="☆";
+
+}
+
+});
+
+}
+
+
+/* ADD KIT */
+function addKitToCart(kitName,btn){
+
+let card=btn.closest(".card");
+
+let checkboxes=
+card.querySelectorAll(
+"input[type='checkbox']"
+);
+
+let price=
+parseInt(
+card.querySelector(".price")
+.innerText
+.replace("₹","")
+);
+
+let selectedItems=[];
+
+checkboxes.forEach(cb=>{
+
+if(cb.checked){
+
+selectedItems.push(
+cb.parentElement.innerText.trim()
+);
+
+}
+
+});
+
+if(selectedItems.length===0){
+
+alert("Please select at least one product");
+
+return;
+
+}
+
+let cart=
+JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+
+name:kitName,
+price:price,
+items:selectedItems
+
+});
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert(
+kitName +
+" added with selected items 🛒"
+);
+
+}
+
+
+function updateKitPrice(card){
+
+let total=0;
+
+card
+.querySelectorAll(
+"input[type='checkbox']"
+)
+.forEach(cb=>{
+
+if(cb.checked){
+
+total+=parseInt(cb.value);
+
+}
+
+});
+
+card.querySelector(".price")
+.innerText="₹"+total;
+
+}
+
+
+/* SUBMIT REVIEW */
+function submitReview(){
+
+let user=
+localStorage.getItem("user");
+
+let loggedIn=
+localStorage.getItem("loggedIn");
+
+if(!user || loggedIn!=="true"){
+
+alert("Please login first");
+
+window.location.href="login.html";
+
+return;
+
+}
+
+let userData=
+JSON.parse(
+localStorage.getItem("userData")
+);
+
+let text=
+document.getElementById(
+"reviewText"
+).value.trim();
+
+if(selectedRating===0 || text===""){
+
+alert(
+"Please give rating and review"
+);
+
+return;
+
+}
+
+let reviews=
+JSON.parse(
+localStorage.getItem("reviews")
+) || [];
+
+
+reviews.push({
+
+user:user,
+email:userData.email,
+rating:selectedRating,
+text:text
+
+});
+
+
+localStorage.setItem(
+"reviews",
+JSON.stringify(reviews)
+);
+
+document
+.getElementById("reviewText")
+.value="";
+
+selectedRating=0;
+
+resetStars();
+
+loadReviews();
+
+}
+
+/* SEARCH PRODUCT */
+function searchProduct() {
+
+let input =
+document.getElementById("searchInput")
+.value
+.toLowerCase();
+
+let cards =
+document.querySelectorAll(".card");
+
+cards.forEach(card => {
+
+let title =
+card.querySelector("h2")
+.innerText
+.toLowerCase();
+
+if(title.includes(input)){
+
+card.style.display = "block";
+
+}
+else{
+
+card.style.display = "none";
+
+}
+
+});
+
+}
+
+
+/* RESET STARS */
+function resetStars(){
+
+document
+.querySelectorAll(
+"#starContainer span"
+)
+.forEach(star=>{
+
+star.classList.remove("active");
+
+star.innerHTML="☆";
+
+});
+
+}
+
+
+/* LOAD REVIEWS */
+function loadReviews(){
+
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+let currentUser = JSON.parse(localStorage.getItem("userData"));
+
+let container = document.getElementById("reviewList");
+container.innerHTML = "";
+
+// FIX: always ensure valid array
+if(!Array.isArray(reviews)){
+reviews = [];
+localStorage.setItem("reviews", JSON.stringify([]));
+}
+
+if(reviews.length === 0){
+container.innerHTML = "<p>No reviews yet</p>";
+return;
+}
+
+reviews.forEach((r, index) => {
+
+let canDelete = currentUser && currentUser.email === r.email;
+
+container.innerHTML += `
+<div style="border-bottom:1px solid #ddd; padding:10px;">
+👤 <b>${r.user}</b><br>
+${"⭐".repeat(r.rating)}<br>
+${r.text}
+
+${canDelete ? `
+<br><br>
+<button onclick="deleteReview(${index})">
+Delete Review ❌
+</button>
+` : ""}
+</div>
+`;
+
+});
+
+}
+
+/* DELETE REVIEW */
+function deleteReview(index){
+
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+let currentUser = JSON.parse(localStorage.getItem("userData"));
+
+if(!currentUser){
+alert("Login required");
+return;
+}
+
+// safety check
+if(!reviews[index] || reviews[index].email !== currentUser.email){
+alert("You can only delete your own review");
+return;
+}
+
+reviews.splice(index, 1);
+
+localStorage.setItem("reviews", JSON.stringify(reviews));
+
+loadReviews();
+
+alert("Review deleted ✅");
+
+}
+
+loadReviews();
+
+</script>
+
+/* NAV */
+
+
+</body>
+</html> 

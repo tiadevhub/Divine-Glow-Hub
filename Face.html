@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Glow Hub | Face</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="face.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="logo">
+<a href="index.html">DIVINE GLOW HUB</a>
+</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="Face.html">Face</a></li>
+<li><a href="Body.html">Body</a></li>
+<li><a href="Product.html">Products</a></li>
+</ul>
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProduct()">
+</div>
+
+<div class="nav-icons">
+<span onclick="goCart()">🛒</span>
+<span onclick="goLogin()">👤</span>
+</div>
+</nav>
+
+<!-- BANNER -->
+<div class="page-banner">
+<img src="images/FaceBanner.jpeg">
+</div>
+
+<h1>Our Skincare Collection 💖</h1>
+
+<!-- FACE WASH -->
+<div class="category">
+<h2>Face Wash</h2>
+<div class="products">
+
+<div class="card" onclick='viewProduct({
+name:"Hydration Face Wash",
+price:299,
+image:"images/hydro.jpeg",
+desc:"A gentle hydrating cleanser that removes dirt without drying skin.",
+ingredients:"Hyaluronic Acid, Glycerin, Aloe Vera, Vitamin B5",
+usage:"Apply on wet face, massage gently for 30 seconds, rinse with water. Use twice daily.",
+benefits:"Hydrates skin, prevents dryness, improves skin texture",
+skinType:"All skin types, especially dry skin"
+})'>
+<img src="images/hydro.jpeg">
+<h3>Hydration Face Wash</h3>
+<p>₹299</p>
+<button onclick="event.stopPropagation(); addToCart('Hydration Face Wash',299)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Charcoal Face Wash",
+price:349,
+image:"images/charcoal.jpeg",
+desc:"Deep cleansing face wash that removes dirt, oil and pollution.",
+ingredients:"Activated Charcoal, Tea Tree Oil, Salicylic Acid",
+usage:"Use twice daily, massage gently and rinse.",
+benefits:"Controls oil, clears pores, reduces acne",
+skinType:"Oily & acne-prone skin"
+})'>
+    <img src="images/charcoal.jpeg">
+    <h3>Charcoal Wash</h3>
+    <p>₹349</p>
+    <button onclick="event.stopPropagation();addToCart('Charcoal Wash',349)">Buy</button></div>
+
+<div class="card" onclick='viewProduct({
+   
+name:"Neem & Aloe Face Wash",
+price:399,
+image:"images/neem.jpeg",
+desc:"Natural antibacterial face wash for clear and fresh skin.",
+ingredients:"Neem Extract, Aloe Vera, Tulsi",
+usage:"Apply on wet skin and rinse.",
+benefits:"Fights acne, soothes skin",
+skinType:"Sensitive & acne-prone"
+
+})'>
+    <img src="images/neem.jpeg">
+    <h3>Neem & Aloe</h3>
+    <p>₹399</p>
+    <button onclick="event.stopPropagation();addToCart('Neem & Aloe',399)">Buy</button></div>
+
+
+
+<div class="card" onclick='viewProduct({
+    name:"Vitamin C Face Wash",
+price:450,
+image:"images/vitc.jpeg",
+desc:"Brightening face wash that boosts glow.",
+ingredients:"Vitamin C, Orange Extract, Niacinamide",
+usage:"Use morning & night.",
+benefits:"Brightens skin, reduces dullness",
+skinType:"All skin types"
+})'>
+    <img src="images/vitc.jpeg">
+    <h3>Vitamin C Wash</h3>
+    <p>₹450</p>
+    <button onclick="event.stopPropagation();addToCart('Vitamin C Wash',450)">Buy</button></div>
+
+</div>
+</div>
+
+<!-- SERUM -->
+<div class="category">
+<h2>Serums</h2>
+<div class="products">
+
+<div class="card" onclick='viewProduct({
+    name:"Vitamin C Serum",
+price:599,
+image:"images/vitamincSerum.jpeg",
+desc:"Brightening serum that reduces dark spots.",
+ingredients:"Vitamin C, Ferulic Acid, Hyaluronic Acid",
+usage:"Apply 2-3 drops in morning.",
+benefits:"Glow boost, evens tone",
+skinType:"All skin types"
+})'>
+    <img src="images/vitamincSerum.jpeg">
+    <h3>Vitamin C Serum</h3>
+    <p>₹599</p>
+    <button onclick="event.stopPropagation();addToCart('Vitamin C Serum',599)">Buy</button>
+</div>
+
+
+<div class="card" onclick='viewProduct({
+    name:"Niacinamide 10% Serum",
+price:649,
+image:"images/NiacinamideSerum.jpeg",
+desc:"A lightweight serum formulated with 10% niacinamide to control excess oil, minimize pores, and improve overall skin texture.",
+ingredients:"Niacinamide (10%), Zinc PCA, Glycerin, Panthenol",
+usage:"Apply 2–3 drops on clean, dry face before moisturizer. Use twice daily (morning and night). Always follow with sunscreen in the daytime.",
+benefits:"Controls oil production, reduces acne marks, minimizes pores, strengthens skin barrier",
+skinType:"Oily, combination and acne-prone skin"
+})'>
+    <img src="images/NiacinamideSerum.jpeg">
+    <h3>Niacinamide Serum</h3>
+    <p>₹649</p>
+    <button onclick="event.stopPropagation();addToCart('Niacinamide Serum',649)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Hyaluronic Acid 2% Serum",
+price:699,
+image:"images/HyaluronicSerum.jpeg",
+desc:"A deeply hydrating serum that attracts moisture into the skin, leaving it plump, smooth, and radiant.",
+ingredients:"Hyaluronic Acid (2%), Glycerin, Panthenol (Vitamin B5), Aloe Vera",
+usage:"Apply 2–3 drops on slightly damp skin after cleansing. Follow with moisturizer. Use twice daily.",
+benefits:"Provides intense hydration, improves skin elasticity, smoothens fine lines, boosts glow",
+skinType:"All skin types, especially dry and dehydrated skin"
+})'>
+    <img src="images/HyaluronicSerum.jpeg">
+    <h3>Hyaluronic Serum</h3>
+    <p>₹699</p>
+    <button onclick="event.stopPropagation();addToCart('Hyaluronic Serum',699)">Buy</button>
+</div>
+
+<div class="card"onclick='viewProduct({
+    name:"Retinol Night Repair Serum",
+price:750,
+image:"images/RetinolSerum.jpeg",
+desc:"An advanced night serum formulated with retinol to improve skin texture, reduce fine lines, and promote cell renewal.",
+ingredients:"Retinol, Peptides, Squalane, Vitamin E",
+usage:"Apply a pea-sized amount at night on clean, dry skin. Start 2–3 times a week and gradually increase frequency. Always use sunscreen during the day.",
+benefits:"Reduces fine lines, improves skin texture, fades dark spots, boosts collagen production",
+skinType:"Normal to oily skin (not recommended for very sensitive beginners)"
+})'>
+    <img src="images/RetinolSerum.jpeg">
+    <h3>Glow Serum</h3>
+    <p>₹750</p>
+    <button onclick="event.stopPropagation();addToCart('Glow Serum',750)">Buy</button>
+</div>
+
+</div>
+</div>
+
+<!-- SUNSCREEN -->
+<div class="category">
+<h2>Sunscreen</h2>
+<div class="products">
+
+<div class="card" onclick='viewProduct({
+    name:"Mango D-Tan Sunscreen",
+price:399,
+image:"images/MangoSunscreen.jpeg",
+desc:"A refreshing sunscreen enriched with mango extracts that helps reduce tanning while protecting your skin from harmful UV rays.",
+ingredients:"Mango Extract, Vitamin C, Zinc Oxide, Aloe Vera",
+usage:"Apply evenly on face and neck 15 minutes before sun exposure. Reapply every 2-3 hours.",
+benefits:"Reduces tanning, brightens skin, provides UV protection",
+skinType:"Normal to dry skin"
+})'>
+    <img src="images/MangoSunscreen.jpeg">
+    <h3>Mango D-Tan</h3>
+    <p>₹399</p>
+    <button onclick="event.stopPropagation();addToCart('Mango D-Tan',399)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"SPF 50 Sunscreen",
+price:499,
+image:"images/sunscreen.jpeg",
+desc:"Lightweight daily sunscreen offering broad-spectrum protection against UVA & UVB rays without leaving a white cast.",
+ingredients:"Zinc Oxide, Titanium Dioxide, Vitamin E",
+usage:"Apply generously before stepping out. Reapply every 2 hours.",
+benefits:"Prevents sun damage, tanning and premature aging",
+skinType:"All skin types"
+})'>
+    <img src="images/sunscreen.jpeg">
+    <h3>SPF 50</h3>
+    <p>₹499</p>
+    <button onclick="event.stopPropagation();addToCart('SPF 50',499)">Buy</button></div>
+
+<div class="card" onclick='viewProduct({
+    name:"Watermelon Sunscreen",
+price:550,
+image:"images/WatermelonSunscreen.jpeg",
+desc:"Hydrating sunscreen infused with watermelon extract to keep your skin fresh, cool and protected throughout the day.",
+ingredients:"Watermelon Extract, Hyaluronic Acid, SPF Filters",
+usage:"Apply before sun exposure and reapply after sweating or washing.",
+benefits:"Hydrates skin, gives fresh glow, protects from UV rays",
+skinType:"Dry & combination skin"
+})'>
+    <img src="images/WatermelonSunscreen.jpeg">
+    <h3>Watermelon Sunscreen</h3>
+    <p>₹550</p>
+    <button onclick="event.stopPropagation();addToCart('Watermelon Sunscreen',550)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Matte Sunscreen",
+price:599,
+image:"images/MatteSunscreen.jpeg",
+desc:"Oil-free matte finish sunscreen designed to control shine and protect acne-prone skin from sun damage.",
+ingredients:"Niacinamide, Silica, Zinc Oxide",
+usage:"Apply evenly on clean skin. Ideal for daily use under makeup.",
+benefits:"Controls oil, prevents acne breakouts, gives matte finish",
+skinType:"Oily & acne-prone skin"
+})'>
+    <img src="images/MatteSunscreen.jpeg">
+    <h3>Matte Sunscreen</h3>
+    <p>₹599</p>
+    <button onclick="event.stopPropagation();addToCart('Matte Sunscreen',599)">Buy</button>
+</div>
+
+</div>
+</div>
+
+<!-- MOISTURIZER -->
+<div class="category">
+<h2>Moisturizers</h2>
+<div class="products">
+
+<div class="card" onclick='viewProduct({
+    name:"Hydra Cream Moisturizer",
+price:499,
+image:"images/HydrationMoisturizer.jpeg",
+desc:"A rich hydrating cream that deeply nourishes dry skin and restores moisture balance for a soft, smooth feel.",
+ingredients:"Hyaluronic Acid, Ceramides, Glycerin, Shea Butter",
+usage:"Apply evenly on clean face after serum. Use twice daily for best results.",
+benefits:"Provides deep hydration, strengthens skin barrier, prevents dryness and flakiness",
+skinType:"Dry to normal skin"
+    })'>
+    <img src="images/HydrationMoisturizer.jpeg">
+    <h3>Hydra Cream</h3>
+    <p>₹499</p>
+    <button onclick="event.stopPropagation();addToCart('Hydra Cream',499)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Night Repair Cream",
+price:699,
+image:"images/NightMoisturizer.jpeg",
+desc:"An overnight repair cream that works while you sleep to restore skin, improve texture, and boost natural glow.",
+ingredients:"Retinol, Vitamin E, Peptides, Squalane",
+usage:"Apply at night on clean skin as the last step of your routine.",
+benefits:"Repairs skin overnight, improves texture, reduces dullness and fine lines",
+skinType:"All skin types"
+})'>
+    <img src="images/NightMoisturizer.jpeg">
+    <h3>Night Cream</h3>
+    <p>₹699</p>
+    <button onclick="event.stopPropagation();addToCart('Night Cream',699)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Oil-Free Gel Moisturizer",
+price:450,
+image:"images/GelMoisturizer.jpeg",
+desc:"A lightweight, fast-absorbing gel moisturizer that hydrates skin without making it oily or greasy.",
+ingredients:"Aloe Vera, Niacinamide, Hyaluronic Acid",
+usage:"Apply on clean skin twice daily. Ideal for use under sunscreen or makeup.",
+benefits:"Hydrates without clogging pores, controls oil, gives fresh matte finish",
+skinType:"Oily and acne-prone skin"
+})'>
+    <img src="images/GelMoisturizer.jpeg">
+    <h3>Light Gel</h3>
+    <p>₹450</p>
+    <button onclick="event.stopPropagation();addToCart('Light Gel',450)">Buy</button>
+</div>
+
+<div class="card" onclick='viewProduct({
+    name:"Anti-Aging Firming Moisturizer",
+price:799,
+image:"images/AntiMoisturizer.jpeg",
+desc:"A nourishing anti-aging cream designed to improve skin elasticity and reduce visible signs of aging.",
+ingredients:"Peptides, Collagen, Vitamin E, Hyaluronic Acid",
+usage:"Apply daily on face and neck after cleansing. Can be used morning and night.",
+benefits:"Improves firmness, reduces fine lines, boosts skin elasticity",
+skinType:"Mature and dry skin"
+})'>
+    <img src="images/AntiMoisturizer.jpeg">
+    <h3>Anti-Aging Moisturizer</h3>
+    <p>₹799</p>
+    <button onclick="event.stopPropagation();addToCart('Anti-Aging Moisturizer',799)">Buy</button>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-box">
+<h3>Divine Glow Hub ✨</h3>
+<p>Your beauty, our care.</p>
+</div>
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 Divine Glow Hub</p>
+</div>
+<a href="about.html" style="color:#fff;margin:0 10px;text-decoration:none;">About Us</a>
+</footer>
+
+<script >
+
+function addToCart(name, price){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push({name:name, price:price});
+localStorage.setItem("cart", JSON.stringify(cart));
+alert(name + " added to cart 🛒");
+}
+
+function goCart(){
+window.location.href = "cart.html";
+}
+
+function goLogin(){
+window.location.href = "login.html";
+}
+function viewProduct(product){
+
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+    window.location.href = "productDetail.html";
+}
+
+</script>
+<script src="script.js"></script>
+
+
+
+</body>
+</html>

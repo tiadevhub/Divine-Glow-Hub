@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine Glow Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">DIVINE GLOW HUB</div>
+    
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Face.html">Face</a></li>
+        <li><a href="Body.html">Body</a></li>
+        <li><a href="Product.html">Products</a></li>
+    </ul>
+
+    <div class="search-box">
+
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProduct()">
+</div>
+
+
+    <div class="nav-icons">
+    <span onclick="goCart()">🛒</span>
+    <span onclick="goLogin()">👤</span>
+     <span onclick="goOrders()">📦</span>
+     </div>
+
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+
+<div class="hero-box">
+
+    <div class="slides" id="slides">
+        <img src="images/home.jpeg">
+        <img src="images/home2.jpeg">
+        <img src="images/home3.jpeg">
+        <img src="images/home4.jpeg">
+    </div>
+
+    <div class="hero-btn">
+        <button onclick="goShop()">Shop Best Sellers</button>
+    </div>
+
+</div>
+
+</section>
+
+<section class="quote-box">
+
+<h2> Quote ✨</h2>
+
+<p id="quote">Loading...</p>
+
+</section>
+
+<!-- AI SECTION -->
+<section class="ai-section">
+
+<div class="ai-container">
+
+    <div class="ai-text">
+        <h2>A.I. GLOW EXPERT</h2>
+        <p>Get personalized skincare routine based on your skin type.</p>
+        <a href="analyze.html">
+            <button class="btn-outline">Start Skin Analysis</button>
+        </a>
+    </div>
+
+    <div class="ai-image">
+        <img src="images/aiAnalysis.jpeg">
+    </div>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+
+<h2 class="section-title">In The Spotlight</h2>
+
+<div class="product-grid">
+
+<!-- Aura Serum -->
+<div class="product-card" onclick='viewProduct({
+name:"Aura Glow Serum",
+price:999,
+image:"images/aura.jpeg",
+desc:"A premium glow serum that enhances skin radiance and improves overall texture.",
+ingredients:"Vitamin C, Niacinamide, Hyaluronic Acid",
+usage:"Apply 2-3 drops on clean face before moisturizer. Use daily.",
+benefits:"Boosts glow, evens skin tone, improves texture",
+skinType:"All skin types"
+})'>
+<div class="card">
+<img src="images/aura.jpeg">
+<h3>Aura Serum</h3>
+<p>₹999</p>
+<button onclick="event.stopPropagation(); addToCart('Aura Serum',999)">Add to Cart</button>
+</div>
+</div>
+
+<!-- Divine Cream -->
+<div class="product-card" onclick='viewProduct({
+name:"Divine Glow Cream",
+price:1250,
+image:"images/cream.jpeg",
+desc:"A luxurious moisturizing cream that deeply nourishes skin and enhances natural glow.",
+ingredients:"Hyaluronic Acid, Ceramides, Vitamin E, Shea Butter",
+usage:"Apply on clean face after serum. Use morning and night.",
+benefits:"Deep hydration, improves skin softness, boosts glow",
+skinType:"Dry to normal skin"
+})'>
+<div class="card">
+<img src="images/cream.jpeg">
+<h3>Divine Cream</h3>
+<p>₹1250</p>
+<button onclick="event.stopPropagation(); addToCart('Divine Cream',1250)">Add to Cart</button>
+</div>
+</div>
+
+<!-- Sunscreen -->
+<div class="product-card" onclick='viewProduct({
+name:"SPF 50 Sunscreen",
+price:750,
+image:"images/sunscreen.jpeg",
+desc:"A lightweight sunscreen that protects skin from harmful UV rays without leaving white cast.",
+ingredients:"Zinc Oxide, Titanium Dioxide, Vitamin E",
+usage:"Apply 15 minutes before sun exposure. Reapply every 2-3 hours.",
+benefits:"Prevents tanning, sun damage and premature aging",
+skinType:"All skin types"
+})'>
+<div class="card">
+<img src="images/sunscreen.jpeg">
+<h3>SPF 50 Sunscreen</h3>
+<p>₹750</p>
+<button onclick="event.stopPropagation(); addToCart('SPF 50 Sunscreen',750)">Add to Cart</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Divine Glow Hub | All Rights Reserved</p>
+<a href="about.html" style="color:#fff;margin:0 10px;text-decoration:none;">About Us</a>
+</footer>
+
+<!-- SCRIPT -->
+<script >
+
+   async function loadQuote(){
+
+try{
+
+let response =
+await fetch(
+"https://dummyjson.com/quotes/random"
+);
+
+let data =
+await response.json();
+
+document
+.getElementById("quote")
+.innerHTML =
+`"${data.quote}" <br> — ${data.author}`;
+
+}
+
+catch(error){
+
+document
+.getElementById("quote")
+.innerText =
+"Glow starts from self-care ✨";
+
+console.log(error);
+
+}
+
+}
+
+loadQuote(); 
+
+// 🟢 SLIDER
+let index = 0;
+let slides;
+
+window.onload = function(){
+    slides = document.getElementById("slides");
+    setInterval(slideImages, 3000); // ✅ only once
+};
+
+function slideImages(){
+    let totalSlides = slides.children.length;
+
+    index++;
+
+    if(index >= totalSlides){
+        index = 0;
+    }
+
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+function searchProduct(){
+
+let input =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+let cards =
+document.querySelectorAll(".card");
+
+let noResult =
+document.getElementById("noResult");
+
+let visibleCount = 0;
+
+cards.forEach(card=>{
+
+let productName =
+card
+.querySelector("h2")
+.textContent
+.toLowerCase();
+
+if(productName.includes(input)){
+
+card.style.display="";
+
+visibleCount++;
+
+}
+
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+if(visibleCount===0){
+
+noResult.style.display="block";
+
+noResult.innerHTML=
+"No matching products found 😢";
+
+}
+
+else{
+
+noResult.style.display="none";
+
+}
+
+}
+
+// 🛒 CART FUNCTION
+function addToCart(name, price){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({name:name, price:price});
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart 🛒");
+}
+
+
+// 🔗 NAVIGATION
+function goCart(){
+    window.location.href = "cart.html";
+}
+
+function goLogin(){
+    window.location.href = "login.html";
+}
+
+function goOrders(){
+    window.location.href = "orders.html";
+}
+
+function goShop(){
+    window.location.href = "bestseller.html";
+}
+function viewProduct(product){
+
+    localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+    window.location.href = "productDetail.html";
+}
+
+
+
+</script>
+<script src="script.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout | Divine Glow Hub</title>
+
+<style>
+body{
+    font-family:Poppins;
+    background:linear-gradient(to right,#fff0f5,#fff8dc);
+    text-align:center;
+}
+
+.box{
+    background:white;
+    width:350px;
+    margin:50px auto;
+    padding:25px;
+    border-radius:10px;
+}
+
+input,select{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    padding:10px 20px;
+    background:hotpink;
+    color:white;
+    border:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Checkout 🧾</h2>
+
+<input placeholder="Full Name">
+<input placeholder="Address">
+<input placeholder="Phone">
+
+<select>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+
+<button onclick="placeOrder()">Place Order</button>
+</div>
+
+<script>
+function placeOrder(){
+    window.location.href = "success.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details | Divine Glow Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+body{
+    font-family:'Poppins', sans-serif;
+    margin:0;
+    background:#fafafa;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    margin:20px;
+    background:#eee;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* CONTAINER */
+.container{
+    display:flex;
+    gap:50px;
+    padding:40px;
+    align-items:flex-start;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* IMAGE */
+.product-img{
+    width:350px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* DETAILS */
+.details{
+    max-width:450px;
+}
+
+h2{
+    font-family:'Playfair Display', serif;
+    margin-bottom:10px;
+}
+
+/* PRICE */
+.price{
+    color:#e91e63;
+    font-size:24px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+/* RATING */
+.rating{
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+/* HEADINGS */
+h4{
+    margin-top:18px;
+    color:#444;
+}
+
+/* BUTTON */
+button.add-btn{
+    background:linear-gradient(135deg,#ff7aa2,#ffb6c1);
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    color:#fff;
+    margin-top:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button.add-btn:hover{
+    transform:scale(1.05);
+    opacity:0.9;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .container{
+        flex-direction:column;
+        align-items:center;
+        padding:20px;
+    }
+
+    .product-img{
+        width:90%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACK -->
+<button class="back-btn" onclick="history.back()">⬅ Back</button>
+
+<div class="container">
+
+<img id="productImage" class="product-img">
+
+<div class="details">
+
+<h2 id="productName"></h2>
+
+<p class="price" id="productPrice"></p>
+
+<p class="rating">⭐⭐⭐⭐☆ (2.3k reviews)</p>
+
+<p id="productDesc"></p>
+
+<h4>✨ Benefits</h4>
+<p id="productBenefits"></p>
+
+<h4>🧪 Ingredients</h4>
+<p id="productIngredients"></p>
+
+<h4>📌 How to Use</h4>
+<p id="productUsage"></p>
+
+<h4>💡 Skin Type</h4>
+<p id="productSkin"></p>
+
+<button class="add-btn" onclick="addToCart()">Add to Cart 🛒</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* GET PRODUCT */
+let product = JSON.parse(localStorage.getItem("selectedProduct")) || {};
+
+/* DISPLAY DATA */
+document.getElementById("productName").innerText = product.name || "Product";
+document.getElementById("productPrice").innerText = product.price ? "₹" + product.price : "";
+document.getElementById("productImage").src = product.image || "";
+document.getElementById("productDesc").innerText = product.desc || "";
+document.getElementById("productBenefits").innerText = product.benefits || "";
+document.getElementById("productIngredients").innerText = product.ingredients || "";
+document.getElementById("productUsage").innerText = product.usage || "";
+document.getElementById("productSkin").innerText = product.skinType || "";
+
+/* ADD TO CART */
+function addToCart(){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(product.name + " added to cart 🛒");
+}
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skin Analysis | Divine Glow Hub</title>
+
+<style>
+
+body{
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(135deg,#fff0f5,#fdf2f2,#f0fff4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+/* MAIN BOX */
+.container{
+    background:white;
+    width:360px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+h1{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+/* QUESTIONS */
+.question{
+    margin-top:15px;
+}
+
+label{
+    display:block;
+    margin:5px 0;
+    cursor:pointer;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    background:linear-gradient(to right,#6abf69,#4caf50);
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:500;
+}
+
+/* RESULT BOX */
+.result{
+    margin-top:20px;
+    display:none;
+    background:#f9fff9;
+    padding:15px;
+    border-radius:10px;
+    border-left:5px solid #6abf69;
+    color:#222;
+}
+
+/* HEADING */
+.result h3{
+    color:#ff4da6;
+}
+
+/* PERCENT TEXT */
+.result strong{
+    color:#6abf69;
+}
+
+/* IMAGE */
+.skin-img{
+    width:100%;
+    border-radius:10px;
+    margin:10px 0;
+}
+
+/* PROGRESS BAR */
+.bar{
+    height:8px;
+    border-radius:10px;
+    background:#ddd;
+    margin:5px 0 10px;
+}
+
+.fill{
+    height:100%;
+    border-radius:10px;
+}
+
+/* COLORS */
+.oily{ background:#ff4da6; }
+.dry{ background:#6abf69; }
+.sensitive{ background:#ff9800; }
+
+/* BUY BUTTON */
+.buy-btn{
+    margin-top:15px;
+    width:100%;
+    padding:10px;
+    background:hotpink;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Skin Analysis 💖</h1>
+<p>Select your skin concerns</p>
+
+<!-- QUESTIONS -->
+<div class="question">
+<label><input type="checkbox" value="acne"> Acne / Pimples</label>
+<label><input type="checkbox" value="oil"> Oily Skin</label>
+<label><input type="checkbox" value="dry"> Dry / Flaky Skin</label>
+<label><input type="checkbox" value="itchy"> Itchy / Irritated</label>
+<label><input type="checkbox" value="spots"> Dark Spots / Pigmentation</label>
+<label><input type="checkbox" value="red"> Redness</label>
+</div>
+
+<button onclick="analyzeSkin()">Analyze Skin</button>
+
+<div class="result" id="resultBox"></div>
+
+</div>
+
+<script>
+
+function analyzeSkin(){
+
+    let checks = document.querySelectorAll("input[type=checkbox]:checked");
+
+    if(checks.length === 0){
+        alert("Please select at least one concern ❌");
+        return;
+    }
+
+    let oilyScore=0, dryScore=0, sensitiveScore=0;
+    let concerns=[];
+
+    checks.forEach(c=>{
+        concerns.push(c.value);
+
+        if(c.value==="oil" || c.value==="acne"){
+            oilyScore+=2;
+        }
+        if(c.value==="dry"){
+            dryScore+=2;
+        }
+        if(c.value==="itchy" || c.value==="red"){
+            sensitiveScore+=2;
+        }
+        if(c.value==="spots"){
+            dryScore+=1;
+            sensitiveScore+=1;
+        }
+    });
+
+    let total = oilyScore + dryScore + sensitiveScore;
+
+    let oilyPercent = Math.round((oilyScore/total)*100);
+    let dryPercent = Math.round((dryScore/total)*100);
+    let sensitivePercent = Math.round((sensitiveScore/total)*100);
+
+    let type="";
+
+    if(oilyPercent >= dryPercent && oilyPercent >= sensitivePercent){
+        type="oily";
+    } 
+    else if(dryPercent >= sensitivePercent){
+        type="dry";
+    } 
+    else{
+        type="sensitive";
+    }
+
+    // IMAGE BASED ON TYPE
+    let img = "";
+    if(type==="oily"){
+        img = "images/oilyskin.jpeg";
+    }
+    else if(type==="dry"){
+        img = "images/dryskin.jpeg";
+    }
+    else{
+        img = "images/sensitiveskin.jpeg";
+    }
+
+    let content = `
+    <h3>Your Skin Type: ${type.toUpperCase()} ✨</h3>
+
+    <img src="${img}" class="skin-img">
+
+    <p><strong>Your concerns:</strong> ${concerns.join(", ")}</p>
+
+    <p><strong>Oily:</strong> ${oilyPercent}%</p>
+    <div class="bar"><div class="fill oily" style="width:${oilyPercent}%"></div></div>
+
+    <p><strong>Dry:</strong> ${dryPercent}%</p>
+    <div class="bar"><div class="fill dry" style="width:${dryPercent}%"></div></div>
+
+    <p><strong>Sensitive:</strong> ${sensitivePercent}%</p>
+    <div class="bar"><div class="fill sensitive" style="width:${sensitivePercent}%"></div></div>
+    `;
+
+    // ROUTINE
+    if(type==="oily"){
+        content += `
+        <h4>Recommended Routine 💧</h4>
+        <ul>
+            <li>Oil Control Face Wash</li>
+            <li>Niacinamide Serum</li>
+            <li>Gel Moisturizer</li>
+            <li>SPF 50 Sunscreen</li>
+        </ul>
+        `;
+    }
+
+    else if(type==="dry"){
+        content += `
+        <h4>Recommended Routine 🌸</h4>
+        <ul>
+            <li>Hydrating Face Wash</li>
+            <li>Hyaluronic Serum</li>
+            <li>Rich Moisturizer</li>
+            <li>Sunscreen</li>
+        </ul>
+        `;
+    }
+
+    else{
+        content += `
+        <h4>Recommended Routine 🌿</h4>
+        <ul>
+            <li>Gentle Cleanser</li>
+            <li>Soothing Serum</li>
+            <li>Aloe Vera Gel</li>
+            <li>Sunscreen</li>
+        </ul>
+        `;
+    }
+
+    content += `<button class="buy-btn" onclick="goShop('${type}')">Buy Products</button>`;
+
+    let box = document.getElementById("resultBox");
+    box.innerHTML = content;
+    box.style.display = "block";
+}
+
+function goShop(type){
+    localStorage.setItem("skinType", type);
+    window.location.href = "shop.html";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!-- signup.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up | Divine Glow Hub</title>
+
+<style>
+
+body{
+    font-family:Poppins, sans-serif;
+    background:linear-gradient(to right,#fff0f5,#fff8dc);
+    text-align:center;
+}
+
+.box{
+    background:white;
+    width:340px;
+    margin:80px auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:40px;
+}
+
+.eye{
+    position:absolute;
+    right:20px;
+    top:12px;
+    cursor:pointer;
+}
+
+button{
+    padding:10px 20px;
+    background:hotpink;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+label{
+    font-size:14px;
+    display:block;
+    margin-top:10px;
+    text-align:left;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.small-text{
+    font-size:12px;
+    color:gray;
+    text-align:left;
+    margin-top:10px;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+a{
+    color:hotpink;
+    text-decoration:none;
+}
+
+#status{
+    color:green;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+#logoutBtn{
+    background:#333;
+    margin-top:10px;
+    display:none;
+}
+
+#deleteBtn{
+    background:red;
+    margin-top:10px;
+    display:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Sign Up 💖</h2>
+
+<p id="status"></p>
+
+<div id="signupForm">
+
+<input type="text" id="name" placeholder="Full Name">
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="text" id="phone" placeholder="Contact Number">
+
+<input type="date" id="dob">
+
+<div class="password-box">
+<input type="password" id="pass" placeholder="Password">
+<span class="eye" onclick="togglePass('pass')">👁</span>
+</div>
+
+<div class="password-box">
+<input type="password" id="confirmPass" placeholder="Confirm Password">
+<span class="eye" onclick="togglePass('confirmPass')">👁</span>
+</div>
+
+<label>
+<input type="checkbox" id="terms">
+I agree to Terms & Conditions
+</label>
+
+<p class="small-text">
+By creating an account, you agree that:
+<br>• Your data will be stored securely
+<br>• You will not misuse the website
+<br>• Orders once placed cannot be cancelled after shipping
+</p>
+
+<button onclick="signup()">Create Account</button>
+
+<p>
+Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+</div>
+
+<button id="logoutBtn" onclick="logout()">
+Logout 🚪
+</button>
+
+<br>
+
+<button id="deleteBtn" onclick="deleteAccount()">
+Delete Account ❌
+</button>
+
+</div>
+
+<script>
+
+// PAGE LOAD
+window.onload = function(){
+
+    let loggedIn = localStorage.getItem("loggedIn");
+
+    let user = localStorage.getItem("user");
+
+    if(loggedIn === "true"){
+
+        document.getElementById("status").innerText =
+        "Already logged in as: " + user + " ✅";
+
+        document.getElementById("signupForm").style.display =
+        "none";
+
+        document.getElementById("logoutBtn").style.display =
+        "inline-block";
+
+        document.getElementById("deleteBtn").style.display =
+        "inline-block";
+    }
+}
+
+// SHOW/HIDE PASSWORD
+function togglePass(id){
+
+    let field = document.getElementById(id);
+
+    if(field.type === "password"){
+        field.type = "text";
+    }
+    else{
+        field.type = "password";
+    }
+}
+
+// SIGNUP FUNCTION
+function signup(){
+
+    let name = document.getElementById("name").value.trim();
+
+    let email = document.getElementById("email").value.trim();
+
+    let phone = document.getElementById("phone").value.trim();
+
+    let dob = document.getElementById("dob").value;
+
+    let pass = document.getElementById("pass").value.trim();
+
+    let confirmPass =
+    document.getElementById("confirmPass").value.trim();
+
+    let terms = document.getElementById("terms").checked;
+
+    // CHECK EXISTING ACCOUNT
+    let existingUser =
+    JSON.parse(localStorage.getItem("userData"));
+
+    if(existingUser &&
+       existingUser.email === email){
+
+        alert("Account already exists ✅ Please login");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    // NAME
+    if(name === ""){
+        alert("Enter full name ❌");
+        return;
+    }
+
+    // EMAIL
+    let emailPattern =
+    /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if(!emailPattern.test(email)){
+        alert("Enter valid email ❌");
+        return;
+    }
+
+    // PHONE
+    if(!/^[0-9]{10}$/.test(phone)){
+        alert("Enter valid 10 digit phone number ❌");
+        return;
+    }
+
+    // DOB
+    if(dob === ""){
+        alert("Select date of birth ❌");
+        return;
+    }
+
+    // PASSWORD
+    let passPattern =
+    /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{6,}$/;
+
+    if(!passPattern.test(pass)){
+
+        alert("Password must contain:\n- 1 uppercase\n- 1 number\n- 1 special character\n- minimum 6 characters ❌");
+
+        return;
+    }
+
+    // CONFIRM PASSWORD
+    if(pass !== confirmPass){
+        alert("Passwords do not match ❌");
+        return;
+    }
+
+    // TERMS
+    if(!terms){
+        alert("Accept Terms & Conditions ❌");
+        return;
+    }
+
+    // SAVE USER
+    let userData = {
+        name:name,
+        email:email,
+        phone:phone,
+        dob:dob,
+        pass:pass
+    };
+
+    localStorage.setItem("userData",
+    JSON.stringify(userData));
+
+    alert("Account Created Successfully ✅");
+
+    window.location.href = "login.html";
+}
+
+// LOGOUT
+function logout(){
+
+    localStorage.removeItem("loggedIn");
+
+    localStorage.removeItem("user");
+
+    alert("Logged out successfully 🚪");
+
+    window.location.reload();
+}
+
+// DELETE ACCOUNT
+function deleteAccount(){
+
+    let confirmDelete =
+    confirm("Are you sure you want to delete your account?");
+
+    if(confirmDelete){
+
+        localStorage.removeItem("userData");
+
+        localStorage.removeItem("loggedIn");
+
+        localStorage.removeItem("user");
+
+        alert("Account deleted successfully ❌");
+
+        window.location.reload();
+    }
+}
+
+</script>
+
+</body>
+</html>
