@@ -175,24 +175,24 @@ font-weight:bold;
 // SAFE DATE PARSER
 function parseDateSafe(dateStr){
 
+if(!dateStr){
+return new Date();
+}
+
 let d = new Date(dateStr);
 
-if(!isNaN(d)) return d;
+// valid ISO or normal date
+if(!isNaN(d.getTime())) return d;
 
+// fallback DD/MM/YYYY
 let parts = dateStr.split("/");
 
-if(parts.length===3){
-
-return new Date(
-parts[2],
-parts[1]-1,
-parts[0]
-);
-
+if(parts.length === 3){
+let fallback = new Date(parts[2], parts[1]-1, parts[0]);
+if(!isNaN(fallback.getTime())) return fallback;
 }
 
 return new Date();
-
 }
 
 
@@ -207,16 +207,15 @@ return "❌ Cancelled";
 
 const now=new Date();
 
-const date=
-parseDateSafe(
-order.date
-);
+const dateObj = parseDateSafe(order.date);
 
-const diffDays=
-Math.floor(
-(now-date)/
-(1000*60*60*24)
-);
+if(isNaN(dateObj.getTime())){
+return "🟡 Order Placed";
+}
+
+const date = dateObj;
+
+const diffDays = Math.floor((now.getTime() - date.getTime())/(1000*60*60*24));
 
 if(diffDays<=0)
 return "🟡 Order Placed";
