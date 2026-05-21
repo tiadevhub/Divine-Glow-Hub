@@ -343,7 +343,7 @@ return;
 let userData=
 JSON.parse(
 localStorage.getItem("userData")
-);
+)||{};
 
 let text=
 document.getElementById(
@@ -369,7 +369,7 @@ localStorage.getItem("reviews")
 reviews.push({
 
 user:user,
-email:userData.email,
+email:userData.email||user,
 rating:selectedRating,
 text:text
 
