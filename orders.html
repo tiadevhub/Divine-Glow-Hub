@@ -4,6 +4,7 @@
 <title>My Orders | Divine Glow Hub</title>
 
 <style>
+
 body{
     font-family:Poppins, sans-serif;
     background:linear-gradient(to right,#fff0f5,#fff8dc);
@@ -71,7 +72,6 @@ h1{
     transform:scale(1.05);
 }
 
-/* 🔥 TRACKING UI */
 .tracking{
     display:flex;
     justify-content:space-between;
@@ -123,39 +123,19 @@ h1{
     }
 }
 
-
 .cancel-btn{
-
-margin-top:10px;
-
-padding:10px 16px;
-
-border:none;
-
-border-radius:20px;
-
-background:#ff4d6d;
-
-color:white;
-
-cursor:pointer;
-
+    margin-top:10px;
+    padding:10px 16px;
+    border:none;
+    border-radius:20px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
 }
 
 .cancel-btn:hover{
-
-opacity:.9;
-
+    opacity:.9;
 }
-
-.cancelled{
-
-color:red;
-
-font-weight:bold;
-
-}
-
 
 </style>
 
@@ -165,505 +145,317 @@ font-weight:bold;
 
 <h1>My Orders 📦</h1>
 
-<a href="index.html" class="back-btn">⬅ Back to Website</a>
+<a href="index.html" class="back-btn">
+⬅ Back to Website
+</a>
 
 <div class="container" id="orderList"></div>
-
 
 <script>
 
 // SAFE DATE PARSER
-function parseDateSafe(dateStr){
 
-if(!dateStr){
-return new Date();
+    function parseDateSafe(dateStr){
+
+    if(!dateStr){
+        return null;
+    }
+
+    // remove time
+    let cleanDate = dateStr.split(",")[0];
+
+    let parts = cleanDate.split("/");
+
+    if(parts.length === 3){
+
+        let day = parseInt(parts[0]);
+        let month = parseInt(parts[1]) - 1;
+        let year = parseInt(parts[2]);
+
+        return new Date(year, month, day);
+    }
+
+    return null;
 }
 
-let d = new Date(dateStr);
 
-// valid ISO or normal date
-if(!isNaN(d.getTime())) return d;
-
-// fallback DD/MM/YYYY
-let parts = dateStr.split("/");
-
-if(parts.length === 3){
-let fallback = new Date(parts[2], parts[1]-1, parts[0]);
-if(!isNaN(fallback.getTime())) return fallback;
-}
-
-return new Date();
-}
-
-
-// STATUS
+// STATUS FUNCTION
 function getOrderStatus(order){
 
-if(order.cancelled){
+    if(order.cancelled){
+        return "❌ Cancelled";
+    }
 
-return "❌ Cancelled";
+    const now = new Date();
 
+    const dateObj = parseDateSafe(order.date);
+
+    if(!dateObj){
+        return "🟡 Order Placed";
+    }
+
+    const diffDays = Math.floor(
+        (now.getTime() - dateObj.getTime()) /
+        (1000*60*60*24)
+    );
+
+    if(diffDays <= 0)
+        return "🟡 Order Placed";
+
+    else if(diffDays === 1)
+        return "📦 Packed";
+
+    else if(diffDays <= 3)
+        return "🚚 Shipped";
+
+    else if(diffDays <= 5)
+        return "🛵 Out for Delivery";
+
+    else
+        return "✅ Delivered";
 }
 
-const now=new Date();
 
-const dateObj = parseDateSafe(order.date);
-
-if(isNaN(dateObj.getTime())){
-return "🟡 Order Placed";
-}
-
-const date = dateObj;
-
-const diffDays = Math.floor((now.getTime() - date.getTime())/(1000*60*60*24));
-
-if(diffDays<=0)
-return "🟡 Order Placed";
-
-else if(diffDays===1)
-return "📦 Packed";
-
-else if(diffDays<=3)
-return "🚚 Shipped";
-
-else if(diffDays<=5)
-return "🛵 Out for Delivery";
-
-else
-return "✅ Delivered";
-
-}
-
-
-// STEP
+// TRACK STEP
 function getStepNumber(orderDate){
 
-const now=
-new Date();
+    const now = new Date();
 
-const order=
-parseDateSafe(orderDate);
+    const order = parseDateSafe(orderDate);
 
-const diffDays=
-Math.floor(
-(now-order)/
-(1000*60*60*24)
-);
+    if(!order){
+        return 1;
+    }
 
-if(diffDays<=0)
-return 1;
+    const diffDays = Math.floor(
+        (now.getTime() - order.getTime()) /
+        (1000*60*60*24)
+    );
 
-else if(diffDays===1)
-return 2;
+    if(diffDays <= 0)
+        return 1;
 
-else if(diffDays<=3)
-return 3;
+    else if(diffDays === 1)
+        return 2;
 
-else if(diffDays<=5)
-return 4;
+    else if(diffDays <= 3)
+        return 3;
 
-else
-return 5;
+    else if(diffDays <= 5)
+        return 4;
 
+    else
+        return 5;
 }
 
 
 // MAIN
-let container=
-document.getElementById(
-"orderList"
-);
+let container =
+document.getElementById("orderList");
 
-let currentUser=
-localStorage.getItem(
-"user"
-);
+let currentUser =
+localStorage.getItem("user");
 
 if(!currentUser){
 
-container.innerHTML=
-
-`
-<h3
-style='text-align:center;'
->
-
-Please login first 🔐
-
-</h3>
-
-`;
+    container.innerHTML = `
+    <h3 style='text-align:center;'>
+    Please login first 🔐
+    </h3>
+    `;
 
 }
-
 else{
 
-let allOrders=
+    let allOrders =
+    JSON.parse(
+        localStorage.getItem("orders")
+    ) || [];
 
-JSON.parse(
+    let orders =
+    allOrders.filter(
+        order => order.user === currentUser
+    );
 
-localStorage.getItem(
-"orders"
-)
+    if(orders.length === 0){
 
-)||[];
+        container.innerHTML = `
+        <h3 style='text-align:center;'>
+        No orders placed yet 😕
+        </h3>
+        `;
 
+    }
+    else{
 
-let orders=
+        orders.forEach(order => {
 
-allOrders.filter(
+            let itemsHTML = "";
 
-order=>
+            order.items.forEach(item => {
 
-order.user===currentUser
+                itemsHTML += `
+                <p>
+                🛍 ${item.name}
+                - ₹${item.price}
+                </p>
+                `;
 
-);
+            });
 
+            let total =
+            order.total ||
+            order.items.reduce(
+                (sum,item)=>sum+item.price,
+                0
+            );
 
-if(
-orders.length===0
-){
+            let orderId =
+            order.orderId ||
+            "DGH00000";
 
-container.innerHTML=
+            let status =
+            getOrderStatus(order);
 
-`
-<h3
-style='text-align:center;'
->
+            let step =
+            order.cancelled
+            ? 0
+            : getStepNumber(order.date);
 
-No orders placed yet 😕
+            container.innerHTML += `
 
-</h3>
+            <div class="order-box">
 
-`;
+            <h3>
+            👤 ${order.user}
+            </h3>
+
+            <p>
+            <b>Order ID:</b>
+            ${orderId}
+            </p>
+
+            <p>
+            <b>Date:</b>
+            ${order.date}
+            </p>
+
+            <p>
+            <b>Delivery Address:</b>
+            ${order.address}
+            </p>
+
+            <p>
+            <b>Phone:</b>
+            ${order.phone}
+            </p>
+
+            <p>
+            <b>Payment:</b>
+            ${order.payment}
+            </p>
+
+            <p>
+            <b>Status:</b>
+            ${status}
+            </p>
+
+            <div class="tracking">
+
+                <div class="step ${step>=1?'active':''}">
+                    <div class="circle">1</div>
+                    <p>Placed</p>
+                </div>
+
+                <div class="step ${step>=2?'active':''}">
+                    <div class="circle">2</div>
+                    <p>Packed</p>
+                </div>
+
+                <div class="step ${step>=3?'active':''}">
+                    <div class="circle">3</div>
+                    <p>Shipped</p>
+                </div>
+
+                <div class="step ${step>=4?'active':''}">
+                    <div class="circle">4</div>
+                    <p>Out</p>
+                </div>
+
+                <div class="step ${step>=5?'active':''}">
+                    <div class="circle">5</div>
+                    <p>Done</p>
+                </div>
+
+            </div>
+
+            ${itemsHTML}
+
+            <hr>
+
+            <p style="
+            font-weight:bold;
+            color:green;
+            ">
+            Total: ₹${total}
+            </p>
+
+            ${
+                (
+                    status==="🟡 Order Placed"
+                    ||
+                    status==="📦 Packed"
+                )
+                ?
+                `
+                <button
+                class="cancel-btn"
+                onclick="cancelOrder('${orderId}')"
+                >
+                Cancel Order ❌
+                </button>
+                `
+                :
+                ""
+            }
+
+            </div>
+
+            `;
+
+        });
+
+    }
 
 }
 
-else{
 
-orders.forEach(order=>{
-
-let itemsHTML="";
-
-order.items.forEach(item=>{
-
-itemsHTML+=
-
-`
-
-<p>
-
-🛍
-${item.name}
-
--
-
-₹${item.price}
-
-</p>
-
-`;
-
-});
-
-
-// SAVED TOTAL
-
-let total =
-order.total ||
-order.items.reduce(
-(sum,item)=>
-sum+item.price,
-0
-);
-
-// SAVED ORDER ID
-let orderId=
-order.orderId
-||
-"DGH00000";
-
-
-let status=
-getOrderStatus(
-order
-);
-
-let step=
-order.cancelled
-? 0
-:
-getStepNumber(
-order.date
-);
-
-
-container.innerHTML+=
-
-`
-
-<div class="order-box">
-
-<h3>
-
-👤
-${order.user}
-
-</h3>
-
-<p>
-
-<b>
-
-Order ID:
-
-</b>
-
-${orderId}
-
-</p>
-
-<p>
-
-<b>
-
-Date:
-
-</b>
-
-${order.date}
-
-</p>
-
-<p>
-
-<b>
-
-Delivery Address:
-
-</b>
-
-${order.address}
-
-</p>
-
-<p>
-
-<b>
-
-Phone:
-
-</b>
-
-${order.phone}
-
-</p>
-
-<p>
-
-<b>
-
-Payment:
-
-</b>
-
-${order.payment}
-
-</p>
-
-<p>
-
-<b>
-
-Status:
-
-</b>
-
-${status}
-
-</p>
-
-
-<div class="tracking">
-
-<div class="step ${step>=1?'active':''}">
-
-<div class="circle">
-
-1
-
-</div>
-
-<p>
-
-Placed
-
-</p>
-
-</div>
-
-
-<div class="step ${step>=2?'active':''}">
-
-<div class="circle">
-
-2
-
-</div>
-
-<p>
-
-Packed
-
-</p>
-
-</div>
-
-
-<div class="step ${step>=3?'active':''}">
-
-<div class="circle">
-
-3
-
-</div>
-
-<p>
-
-Shipped
-
-</p>
-
-</div>
-
-
-<div class="step ${step>=4?'active':''}">
-
-<div class="circle">
-
-4
-
-</div>
-
-<p>
-
-Out
-
-</p>
-
-</div>
-
-
-<div class="step ${step>=5?'active':''}">
-
-<div class="circle">
-
-5
-
-</div>
-
-<p>
-
-Done
-
-</p>
-
-</div>
-
-</div>
-
-
-${itemsHTML}
-
-<hr>
-
-<p
-style="
-font-weight:bold;
-color:green;
-"
->
-
-Total:
-
-₹${total}
-
-</p>
-
-${
-(
-status==="🟡 Order Placed"
-||
-status==="📦 Packed"
-)
-
-?
-
-`
-
-<button
-class="cancel-btn"
-onclick="
-cancelOrder(
-'${orderId}'
-)
-"
->
-
-Cancel Order ❌
-
-</button>
-
-`
-
-:
-
-""
-}
-
-</div>
-
-`;
-
-});
-
-}
-
-}
-
+// CANCEL ORDER
 function cancelOrder(orderId){
 
-let orders=
-JSON.parse(
-localStorage.getItem(
-"orders"
-)
-)||[];
+    let orders =
+    JSON.parse(
+        localStorage.getItem("orders")
+    ) || [];
 
-let index=
-orders.findIndex(
-o=>
-o.orderId===orderId
-);
+    let index =
+    orders.findIndex(
+        o => o.orderId === orderId
+    );
 
-if(index===-1)
-return;
+    if(index === -1)
+        return;
 
-orders[index].cancelled=true;
+    orders[index].cancelled = true;
 
-localStorage.setItem(
-"orders",
-JSON.stringify(
-orders
-)
-);
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
 
-alert(
-"Order Cancelled ❌"
-);
+    alert("Order Cancelled ❌");
 
-location.reload();
-
+    location.reload();
 }
 
 </script>
