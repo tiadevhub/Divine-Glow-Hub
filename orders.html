@@ -155,24 +155,29 @@ h1{
 
 // SAFE DATE PARSER
 
-    function parseDateSafe(dateStr){
+     function parseDateSafe(dateStr){
 
-    if(!dateStr){
-        return null;
+    if(!dateStr) return null;
+
+    let d = new Date(dateStr);
+
+    if(!isNaN(d.getTime())){
+
+        // normalize to midnight
+        d.setHours(0,0,0,0);
+        return d;
     }
 
-    // remove time
-    let cleanDate = dateStr.split(",")[0];
-
-    let parts = cleanDate.split("/");
+    let parts = dateStr.split("/");
 
     if(parts.length === 3){
-
         let day = parseInt(parts[0]);
         let month = parseInt(parts[1]) - 1;
         let year = parseInt(parts[2]);
 
-        return new Date(year, month, day);
+        let newDate = new Date(year, month, day);
+        newDate.setHours(0,0,0,0);
+        return newDate;
     }
 
     return null;
@@ -195,8 +200,7 @@ function getOrderStatus(order){
     }
 
     const diffDays = Math.floor(
-        (now.getTime() - dateObj.getTime()) /
-        (1000*60*60*24)
+        Math.floor((now - dateObj) / (1000 * 60 * 60 * 24))
     );
 
     if(diffDays <= 0)
