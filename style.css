@@ -317,3 +317,144 @@ footer {
 .search-box button:hover {
     background: #ac8a46;
 }
+/* ================================
+   GLOWBOT CHATBOT
+================================ */
+
+.glowbot-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    font-family: 'Karla', sans-serif;
+}
+
+/* Floating button */
+.glowbot-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #d9a441;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.glowbot-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Chat window */
+.glowbot-chat {
+    display: none;
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Header */
+.glowbot-header {
+    background: #252525;
+    color: white;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.glowbot-header h3 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.glowbot-header p {
+    margin: 3px 0 0;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+#glowbot-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Messages area */
+.glowbot-messages {
+    height: 375px;
+    padding: 15px;
+    overflow-y: auto;
+    background: #faf8f5;
+}
+
+/* Bot message */
+.bot-message {
+    background: #eee5d8;
+    color: #333;
+    padding: 10px 13px;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* User message */
+.user-message {
+    background: #d9a441;
+    color: white;
+    padding: 10px 13px;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Input area */
+.glowbot-input-area {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
+
+#glowbot-input {
+    flex: 1;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 0 15px;
+    outline: none;
+    font-family: 'Karla', sans-serif;
+}
+
+#glowbot-send {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #d9a441;
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+#glowbot-send:hover {
+    opacity: 0.85;
+}
